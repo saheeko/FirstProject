@@ -59,6 +59,7 @@ public class OnlineDAO {
 		}
 		return list;
 //		sahee;
+//		sahee;
 	}
 
 	public int join(OnlineVO member) {
