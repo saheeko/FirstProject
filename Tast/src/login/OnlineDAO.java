@@ -17,7 +17,7 @@ public class OnlineDAO {
 	String password = "himedia";// 하이 미디어 ㅋㅋ
 
 	private Connection con;
-	private PreparedStatement stmt;
+	private PreparedStatement pstmt;
 //	private Statement stmt;
 	private ResultSet rs;
 
@@ -29,15 +29,15 @@ public class OnlineDAO {
 
 			String query = "SELECT * FROM MEMBER";
 			if (id != null) {
-				query += " where id=TRIM('" + id + ")";
-//				query = "insert into Member(ID,PASSWORD)values(?,?)"; 
+				query += " where id=TRIM('" + id + "')";
 			}
 			System.out.println("SQL : " + query);
-//			PreparedStatement test = con.prepareStatement(query);
-//			rs = test.executeQuery();
-			rs = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//			Statement stmt = conn.createStatement();
+//			Connection conn = DriverManager.getConnection(url, user, password);
+//			rs = stmt.executeQuery(query);
+			rs = pstmt.executeQuery();	
 			rs.last();
-//			System.out.println("rs :: " + rs);
 
 			System.out.println("rs.getRow() : " + rs.getRow());
 
@@ -54,7 +54,7 @@ public class OnlineDAO {
 					list.add(data);
 				}
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return list;
@@ -140,7 +140,7 @@ public class OnlineDAO {
 			System.out.println("jdbc driver loading success.");
 			con = DriverManager.getConnection(url, user, password);
 			System.out.println("oracle connection success.");
-//			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			//stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			System.out.println("statement create success.");
 		} catch (Exception e) {
 			e.printStackTrace();

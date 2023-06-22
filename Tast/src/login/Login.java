@@ -772,11 +772,11 @@ public class Login extends JFrame {
 
 					System.out.println("DB ==> " + id + " : " + pwd);
 
-					if (password1.getText().equals(pwd)) {
+					if (password11.getText().equals(pwd)) {
 						System.out.println("로그인이 되었습니다!");
 
 					} else {
-						System.out.println("다시 입력하세요.");
+						System.out.println("비밀번호를 다시 입력하세요.");
 					}
 				} else {
 					System.out.println("ID가 틀렸습니다. 다시 입력하세요.");
