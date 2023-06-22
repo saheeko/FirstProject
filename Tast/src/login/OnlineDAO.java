@@ -58,6 +58,7 @@ public class OnlineDAO {
 			e.printStackTrace();
 		}
 		return list;
+//		sahee;
 	}
 
 	public int join(OnlineVO member) {
