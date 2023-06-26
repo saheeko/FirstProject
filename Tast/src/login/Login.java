@@ -11,16 +11,18 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class Login extends JFrame {
 	private OnlineDAO Dao;
+	protected String msg;
 
 	public static void main(String[] args) {
 		new Login();
 //		 new setGUI();
-
+         
 	}
 //아이디 찾기창
 
@@ -474,7 +476,7 @@ public class Login extends JFrame {
 	public void findjoin() {
 		JFrame jf3 = new JFrame();
 		jf3.setLocation(600, 300);
-		jf3.setSize(400, 500);
+		jf3.setSize(400, 400);
 		jf3.setTitle("회원가입");
 		jf3.setLayout(null);
 
@@ -490,123 +492,117 @@ public class Login extends JFrame {
 		nameValue.setLocation(25, 40);
 
 		jf3.add(nameValue);
-		// 이런식으로 바꾸는게 나을거야 웅
-		// 그래서 이제 다른건 ????
-		// 이해가 갔을진 모르겠지만 하나하나 잘 뜯어봐야되
-		// 내가 한게 .. 뭐 정답일 순 없겠지만
-		// 나도 사실JLabel 이런건 처음봐 무튼 궁금한거 더 없지 ? 있으면 빨리 말해 그냥
-		// 자냐 ? ㅂㅇㅂㅇ
 
-		JLabel ph = new JLabel("주민등록번호");
-		ph.setSize(100, 30);
-		ph.setLocation(12, 65);
-		ph.setHorizontalAlignment(JLabel.CENTER);
-
-		jf3.add(ph);
-
-		JTextField ph1 = new JTextField(10);
-		ph1.setSize(340, 30);
-		ph1.setLocation(25, 90);
-
-		jf3.add(ph1);
+//		JLabel ph = new JLabel("주민등록번호");
+//		ph.setSize(100, 30);
+//		ph.setLocation(12, 65);
+//		ph.setHorizontalAlignment(JLabel.CENTER);
+//
+//		jf3.add(ph);
+//
+//		JTextField ph1 = new JTextField(20);
+//		ph1.setSize(340, 30);
+//		ph1.setLocation(25, 90);
+//
+//		jf3.add(ph1);
 
 		JLabel id1 = new JLabel("아이디");
 		id1.setSize(70, 30);
-		id1.setLocation(8, 115);
+		id1.setLocation(10, 65);
 		id1.setHorizontalAlignment(JLabel.CENTER);
 
 		jf3.add(id1);
 
 		JTextField id2 = new JTextField(10);
 		id2.setSize(340, 30);
-		id2.setLocation(25, 140);
+		id2.setLocation(25, 90);
 
 		jf3.add(id2);
 
 		JLabel pass = new JLabel("비밀번호");
 		pass.setSize(70, 30);
-		pass.setLocation(15, 165);
+		pass.setLocation(15, 115);
 		pass.setHorizontalAlignment(JLabel.CENTER);
 
 		jf3.add(pass);
 
-		JTextField pass1 = new JTextField(10);
+		JTextField pass1 = new JTextField(20);
 		pass1.setSize(340, 30);
-		pass1.setLocation(25, 190);
+		pass1.setLocation(25, 140);
 
 		jf3.add(pass1);
 
-		JLabel pass2 = new JLabel("비밀번호확인");
+		JLabel pass2 = new JLabel("비밀번호 재확인");
 		pass2.setSize(100, 30);
-		pass2.setLocation(10, 215);
+		pass2.setLocation(18, 165);
 		pass2.setHorizontalAlignment(JLabel.CENTER);
 
 		jf3.add(pass2);
 
-		JTextField pass3 = new JTextField(10);
+		JTextField pass3 = new JTextField(20);
 		pass3.setSize(340, 30);
-		pass3.setLocation(25, 240);
+		pass3.setLocation(25, 190);
 
 		jf3.add(pass3);
 
-		JLabel add = new JLabel("주소   ");
-		add.setSize(70, 30);
-		add.setLocation(8, 265);
-		add.setHorizontalAlignment(JLabel.CENTER);
-
-		jf3.add(add);
-
-		JTextField add1 = new JTextField(10);
-		add1.setSize(340, 30);
-		add1.setLocation(25, 290);
-
-		jf3.add(add1);
+//		JLabel add = new JLabel("주소   ");
+//		add.setSize(70, 30);
+//		add.setLocation(8, 265);
+//		add.setHorizontalAlignment(JLabel.CENTER);
+//
+//		jf3.add(add);
+//
+//		JTextField add1 = new JTextField(10);
+//		add1.setSize(340, 30);
+//		add1.setLocation(25, 290);
+//
+//		jf3.add(add1);
 
 		JLabel phone = new JLabel("휴대번호");
 		phone.setSize(70, 30);
-		phone.setLocation(15, 315);
+		phone.setLocation(13, 215);
 		phone.setHorizontalAlignment(JLabel.CENTER);
 
 		jf3.add(phone);
 
 		JTextField phone1 = new JTextField(10);
 		phone1.setSize(340, 30);
-		phone1.setLocation(25, 340);
+		phone1.setLocation(25, 240);
 
 		jf3.add(phone1);
 
 		JLabel SNS = new JLabel("SNS발송");
 		SNS.setSize(70, 30);
-		SNS.setLocation(12, 365);
+		SNS.setLocation(12, 265);
 		SNS.setHorizontalAlignment(JLabel.CENTER);
 
 		jf3.add(SNS);
 
 		JLabel che = new JLabel("수신");
 		che.setSize(70, 30);
-		che.setLocation(250, 365);
+		che.setLocation(250, 265);
 
 		jf3.add(che);
 
 		JCheckBox che1 = new JCheckBox();
 		che1.setSize(20, 20);
-		che1.setLocation(225, 370);
+		che1.setLocation(225, 270);
 		jf3.add(che1);
 
 		JLabel che2 = new JLabel("수신거부");
 		che2.setSize(70, 30);
-		che2.setLocation(310, 365);
+		che2.setLocation(310, 265);
 
 		jf3.add(che2);
 
 		JCheckBox che3 = new JCheckBox();
 		che3.setSize(20, 20);
-		che3.setLocation(285, 370);
+		che3.setLocation(285, 270);
 		jf3.add(che3);
 
 		JButton bott2 = new JButton("3확인");
 		bott2.setSize(70, 30);
-		bott2.setLocation(290, 410);
+		bott2.setLocation(290, 315);
 
 		jf3.add(bott2);
 
@@ -618,18 +614,50 @@ public class Login extends JFrame {
 				String tfpass = pass1.getText();
 				String tfname = nameValue.getText();
 				String tfpho = phone1.getText();
-				String tfrepass = pass3.getText();
-				String tfadd = add1.getText();
-				String tfnum = ph1.getText();
+//				String tfadd = add1.getText();
+//				String tfnum = ph1.getText();
 
-				OnlineVO member = new OnlineVO(tfid, tfpass, tfname, tfpho, tfrepass, tfadd, tfnum);
+				OnlineVO member = new OnlineVO(tfid, tfpass, tfname, tfpho);
 				OnlineDAO dao = new OnlineDAO();
 				dao.join(member);
+//				dao.join1(member);
 
 			}
 		});
+//		bot4.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				System.out.println(id.getText() + " : " + password11.getText());
+//
+//				String strId = id.getText();
+//
+//				ArrayList<OnlineVO> list = Dao.list(strId);
+//
+//				if (list.size() == 1) {
+//					OnlineVO data = (OnlineVO) list.get(0);
+//					String id = data.getId();
+//					String pwd = data.getPwd();
+////					String name = data.getName();
+//					String msg = " ";
+//					System.out.println("DB ==> " + id + " : " + pwd);
+//
+//					if (password11.getText().equals(pwd)) {
+//						msg = "로그인이 되었습니다!";
+//						JOptionPane.showMessageDialog(null, msg);
+//					} else {
+//						msg = "비밀번호를 다시 입력하세요.";
+//						JOptionPane.showMessageDialog(null, msg);
+//					}
+//				} else if (!(id.getText().equals(id))) {
+//					msg = "ID가 틀렸습니다. 다시 입력하세요.";
+//					JOptionPane.showMessageDialog(null, msg);
+//
+//				}
+//			}
+//		});
 
 	}
+	
 
 //로그인창에 들어간것들
 	public Login() {
@@ -668,7 +696,7 @@ public class Login extends JFrame {
 
 		jf.add(password1);
 
-		JTextField password11 = new JTextField();
+		JTextField password11 = new JTextField(20);
 		password11.setSize(350, 30);
 		password11.setLocation(50, 200);
 
@@ -769,20 +797,29 @@ public class Login extends JFrame {
 					String id = data.getId();
 					String pwd = data.getPwd();
 //					String name = data.getName();
-
+					String msg = " ";
 					System.out.println("DB ==> " + id + " : " + pwd);
 
 					if (password11.getText().equals(pwd)) {
-						System.out.println("로그인이 되었습니다!");
-
+						msg = "로그인이 되었습니다!";
+						JOptionPane.showMessageDialog(null, msg);
 					} else {
-						System.out.println("비밀번호를 다시 입력하세요.");
+						msg = "비밀번호를 다시 입력하세요.";
+						JOptionPane.showMessageDialog(null, msg);
 					}
-				} else {
-					System.out.println("ID가 틀렸습니다. 다시 입력하세요.");
+				} else if (!(id.getText().equals(id))) {
+					msg = "ID가 틀렸습니다. 다시 입력하세요.";
+					JOptionPane.showMessageDialog(null, msg);
+
 				}
 			}
 		});
+	
+		
+		
+		
+		
+		
 		// 뭐가 문제인지 말해줘 ?응아니야 아니야 말해줘
 //		bot4.addActionListener(new ActionListener() {
 //

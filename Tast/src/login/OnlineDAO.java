@@ -36,7 +36,7 @@ public class OnlineDAO {
 //			Statement stmt = conn.createStatement();
 //			Connection conn = DriverManager.getConnection(url, user, password);
 //			rs = stmt.executeQuery(query);
-			rs = pstmt.executeQuery();	
+			rs = pstmt.executeQuery();
 			rs.last();
 
 			System.out.println("rs.getRow() : " + rs.getRow());
@@ -58,77 +58,53 @@ public class OnlineDAO {
 			e.printStackTrace();
 		}
 		return list;
-//		sahee;
-//		sahee;
+
 	}
 
-	public int join(OnlineVO member) {
-		int result = 0;
+	public void join(OnlineVO member) {
 		try {
+			connDB();
 
-//			connDB();
-			try {
-				// 여기서 DB 케넥트 연결할때 jar 파일이라 해야하나 라이브러리가 없어서 연결이 안됐던거야 어디냐면
-				Class.forName(driver); // 이부분인데 이부분을 사용하려면 라이브러리가 필
+			String sql = "insert into Member(ID,PASSWORD,NAME,PHONE) values(?,?,?,?)";
 
-				System.out.println("jdbc driver loading success.");
-				con = DriverManager.getConnection(url, user, password);
-				System.out.println("oracle connection success.");
+			pstmt = con.prepareStatement(sql);
 
-				String sql = "insert into Member(ID,PASSWORD,NAME,PHONE,PHONECHK,ADDRESS,NUM) values(?,?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, member.getId());
-				pstmt.setString(2, member.getPwd());
-				pstmt.setString(3, member.getName());
-				pstmt.setString(4, member.getPhone());
-				pstmt.setString(5, member.getPhonechk());
-				pstmt.setString(6, member.getAddress());
-				pstmt.setString(7, member.getNum());
+			pstmt.setString(1, member.getId());
+			pstmt.setString(2, member.getPwd());
+			pstmt.setString(3, member.getName());
+			pstmt.setString(4, member.getPhone());
 
-				ResultSet rs = pstmt.executeQuery();
-				rs.next();
+			int r = pstmt.executeUpdate();
+			System.out.println("변경된 row : " + r);
 
-				String msg = " ";
+			String msg = " ";
 
-				if (rs.getRow() == 1) {
-					System.out.println("회원가입 성공");
-					msg = "회원가입 성공";
-					JOptionPane.showMessageDialog(null, msg);
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-				// if(예외가 ORA-00001 이 나왔을 때){
-//					오류창 뜨게 만드세요.
-//				} else (다른 오류가 뜨면 예외처리 하세요.) {
-//					화이팅
-//				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				// 여기는 놔두세요.
+			if (r == 1) {
+				System.out.println("회원가입 성공");
+				msg = "회원가입을 축하드립니다!";
+				JOptionPane.showMessageDialog(null, msg);
+			}
+		} catch (SQLException e1) {
+			if (e1.getMessage().contains("ORA-00001")) {
+//				System.out.println("아이디가 중복되어 사용불가");
+				String msg = "아이디 중복 사용불가";
+				JOptionPane.showMessageDialog(null, msg);
+			} else if (member.getId().equals("") || member.getPwd().equals("")|| member.getName().equals("")
+					|| member.getPhone().equals("")) { 
+//				System.out.println("입력되지 않은 사항이 있습니다.");
+				String msg = "입력되지 않은 사항이 있습니다.";
+				JOptionPane.showMessageDialog(null, msg);
 			}
 
-			// 그리고 여기에 아까 (?,?,?,?) 이렇게 해놔서 그렇게 하면 안돼
-//			stmt = con.prepareStatement(query);
-//			stmt = con.prepareStatement();
-//			stmt.setString(1, member.getId());
-//			stmt.setString(2, member.getPwd());
-//	        stmt.setString(3, member.getName());
-//	        stmt.setString(4, member.getPhone());
-//	        stmt.setString(5, member.getPhonechk());
-//	        stmt.setString(6, member.getAddress());
-//	        stmt.setString(7, member.getNum());
-			// 굿굿 ?짜잔그럼 내가 회원가입창을 만들고 회원가입한사람들의 이력이 나오게끔할때 디비에도 추가하고 여기에도
-			// 그건 이제 너가 데이터화 하려는 정보들 받아서 하면 되는거고
-			// 너가 지금 setName 부터 폰 포인트 저런거 있잖아
-
-//			result = stmt.execute(query);
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return result;
 	}
+
+	////////////////////////// 회원가입 예외처리
+	////////////////////////////
+	// 현재 입력된 id가 DB에 존재하는지 확인
 
 	public void connDB() {
 		// 이부분인가 ?
@@ -137,12 +113,13 @@ public class OnlineDAO {
 		// 그래 나중에 셋팅할때 또 알아야지
 		try {
 			// 여기서 DB 케넥트 연결할때 jar 파일이라 해야하나 라이브러리가 없어서 연결이 안됐던거야 어디냐면
-//			Class.forName(driver);
+			Class.forName(driver);
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			System.out.println("jdbc driver loading success.");
 			con = DriverManager.getConnection(url, user, password);
 			System.out.println("oracle connection success.");
-			//stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
 			System.out.println("statement create success.");
 		} catch (Exception e) {
 			e.printStackTrace();
