@@ -22,10 +22,10 @@ public class Login extends JFrame {
 	public static void main(String[] args) {
 		new Login();
 //		 new setGUI();
-         
+//		CalendarExample.main(args);
 	}
-//아이디 찾기창
 
+//아이디 찾기창
 	public void findid() {
 
 //		dao = new stmt;
@@ -600,7 +600,7 @@ public class Login extends JFrame {
 		che3.setLocation(285, 270);
 		jf3.add(che3);
 
-		JButton bott2 = new JButton("3확인");
+		JButton bott2 = new JButton("확인");
 		bott2.setSize(70, 30);
 		bott2.setLocation(290, 315);
 
@@ -614,50 +614,21 @@ public class Login extends JFrame {
 				String tfpass = pass1.getText();
 				String tfname = nameValue.getText();
 				String tfpho = phone1.getText();
-//				String tfadd = add1.getText();
-//				String tfnum = ph1.getText();
 
 				OnlineVO member = new OnlineVO(tfid, tfpass, tfname, tfpho);
 				OnlineDAO dao = new OnlineDAO();
+//				System.out.print("asdas");
+			
 				dao.join(member);
 //				dao.join1(member);
-
+//				dao.joinId(member);
+				
+//				CalendarExample cd = new CalendarExample();
+//				cd.createAndShowGUI(tfid, tfpass, tfname, tfpho);
 			}
 		});
-//		bot4.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				System.out.println(id.getText() + " : " + password11.getText());
-//
-//				String strId = id.getText();
-//
-//				ArrayList<OnlineVO> list = Dao.list(strId);
-//
-//				if (list.size() == 1) {
-//					OnlineVO data = (OnlineVO) list.get(0);
-//					String id = data.getId();
-//					String pwd = data.getPwd();
-////					String name = data.getName();
-//					String msg = " ";
-//					System.out.println("DB ==> " + id + " : " + pwd);
-//
-//					if (password11.getText().equals(pwd)) {
-//						msg = "로그인이 되었습니다!";
-//						JOptionPane.showMessageDialog(null, msg);
-//					} else {
-//						msg = "비밀번호를 다시 입력하세요.";
-//						JOptionPane.showMessageDialog(null, msg);
-//					}
-//				} else if (!(id.getText().equals(id))) {
-//					msg = "ID가 틀렸습니다. 다시 입력하세요.";
-//					JOptionPane.showMessageDialog(null, msg);
-//
-//				}
-//			}
-//		});
-
+//		
 	}
-	
 
 //로그인창에 들어간것들
 	public Login() {
@@ -796,6 +767,8 @@ public class Login extends JFrame {
 					OnlineVO data = (OnlineVO) list.get(0);
 					String id = data.getId();
 					String pwd = data.getPwd();
+					String name = data.getName();
+					String phone = data.getPhone();
 //					String name = data.getName();
 					String msg = " ";
 					System.out.println("DB ==> " + id + " : " + pwd);
@@ -803,7 +776,7 @@ public class Login extends JFrame {
 					if (password11.getText().equals(pwd)) {
 						msg = "로그인이 되었습니다!";
 						JOptionPane.showMessageDialog(null, msg);
-					} else {
+					} else if(!password11.getText().equals(pwd)){
 						msg = "비밀번호를 다시 입력하세요.";
 						JOptionPane.showMessageDialog(null, msg);
 					}
@@ -814,12 +787,7 @@ public class Login extends JFrame {
 				}
 			}
 		});
-	
-		
-		
-		
-		
-		
+
 		// 뭐가 문제인지 말해줘 ?응아니야 아니야 말해줘
 //		bot4.addActionListener(new ActionListener() {
 //

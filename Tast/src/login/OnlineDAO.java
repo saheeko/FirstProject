@@ -46,6 +46,7 @@ public class OnlineDAO {
 			} else {
 				System.out.println(rs.getRow() + " rows selected.....");
 				rs.previous();
+				
 				while (rs.next()) {
 					String sh = rs.getString("ID");
 					String password11 = rs.getString("PASSWORD");
@@ -53,18 +54,58 @@ public class OnlineDAO {
 					OnlineVO data = new OnlineVO(sh, password11);
 					list.add(data);
 				}
+				CalendarExample cd = new CalendarExample();
+				OnlineVO data = new OnlineVO(query, query);
+				cd.createAndShowGUI(data.getId(),data.getPwd(),data.getName(),data.getPhone());
 			}
+//				CalendarExample cd = new CalendarExample();
+//				OnlineVO data = new OnlineVO(query, query);
+//				cd.createAndShowGUI(data.getId(),data.getPwd(),data.getName(),data.getPhone());
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return list;
 
 	}
+	
+	public void joinId(OnlineVO member) {
+		try {
+			connDB();
+
+			String query = "SELECT * FROM MEMBER where id=TRIM('" + member.getId() + "')";
+			System.out.println("SQL : " + query);
+			pstmt = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//			Statement stmt = conn.createStatement();
+//			Connection conn = DriverManager.getConnection(url, user, password);
+//			rs = stmt.executeQuery(query);
+			rs = pstmt.executeQuery();
+			rs.last();
+
+			System.out.println("rs.getRow() : " + rs.getRow());
+
+			if (rs.getRow() != 0) {
+				String msg = "아이디 중복 사용불가";
+				JOptionPane.showMessageDialog(null, msg);
+			} else if (member.getId().equals("") || member.getPwd().equals("") || member.getName().equals("")
+					|| member.getPhone().equals("")) {
+//				System.out.println("입력되지 않은 사항이 있습니다.");
+				String msg = "입력되지 않은 사항이 있습니다.";
+				JOptionPane.showMessageDialog(null, msg);
+			} 
+//			else {
+//				CalendarExample cd = new CalendarExample();
+//				cd.createAndShowGUI(member.getId(),member.getPwd(),member.getName(),member.getPhone());
+//			}
+		} catch (Exception e1) {
+		System.out.println("오류");
+		}
+	}
 
 	public void join(OnlineVO member) {
 		try {
 			connDB();
-
+			
 			String sql = "insert into Member(ID,PASSWORD,NAME,PHONE) values(?,?,?,?)";
 
 			pstmt = con.prepareStatement(sql);
@@ -73,6 +114,8 @@ public class OnlineDAO {
 			pstmt.setString(2, member.getPwd());
 			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getPhone());
+//			pstmt.setString(5, member.getMonth());
+//			pstmt.setString(6, member.getCalendar());
 
 			int r = pstmt.executeUpdate();
 			System.out.println("변경된 row : " + r);
@@ -83,24 +126,15 @@ public class OnlineDAO {
 				System.out.println("회원가입 성공");
 				msg = "회원가입을 축하드립니다!";
 				JOptionPane.showMessageDialog(null, msg);
-			}
-		} catch (SQLException e1) {
-			if (e1.getMessage().contains("ORA-00001")) {
-//				System.out.println("아이디가 중복되어 사용불가");
-				String msg = "아이디 중복 사용불가";
-				JOptionPane.showMessageDialog(null, msg);
-			} else if (member.getId().equals("") || member.getPwd().equals("")|| member.getName().equals("")
-					|| member.getPhone().equals("")) { 
-//				System.out.println("입력되지 않은 사항이 있습니다.");
-				String msg = "입력되지 않은 사항이 있습니다.";
-				JOptionPane.showMessageDialog(null, msg);
-			}
 
-			
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+/////////////////////////////////////
+
+	/////////////////////////
 
 	////////////////////////// 회원가입 예외처리
 	////////////////////////////
@@ -125,5 +159,4 @@ public class OnlineDAO {
 			e.printStackTrace();
 		}
 	}
-
 }

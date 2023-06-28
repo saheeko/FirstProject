@@ -6,10 +6,10 @@ public class OnlineVO {
 	private String pwd;
 	private String name;
 	private String phone;
+	private String Calendar;
+	private String Month;
 
-//   private String address;
-//   private String num;
-// private String point;
+
 	public OnlineVO(String sh, String password) {
 		id = sh;
 		pwd = password;
@@ -20,9 +20,23 @@ public class OnlineVO {
 		pwd = joinpassword;
 		name = joinname;
 		phone = joinphone;
-//		address = joinaddress;
-//		num = joinnum;
+
 	}
+//	public OnlineVO(String joincalendar) {
+//		Calendar = joincalendar;
+//
+//	}
+	public OnlineVO(String joinsh, String joinpassword, String joinname, String joinphone, String joinmonth, String joincalendar) {
+		id = joinsh;
+		pwd = joinpassword;
+		name = joinname;
+		phone = joinphone;
+		Month = joinmonth;
+		Calendar = joincalendar;
+		
+
+	}
+//////////////////////////////////////////////////////////////////
 
 	public String getId() {
 		return id;
@@ -56,23 +70,19 @@ public class OnlineVO {
 		this.phone = phone;
 	}
 
-//	public String getAddress() {
-//		return address;
-//	}
-//	public void setAdress(String address) {
-//		this.address = address;
-//	}
-//	public String getNum() {
-//		return num;
-//	}
-//	public void setNum(String num) {
-//		this.num = num;
-//	}
-//	public int getPoint() {
-//		return point;
-//	}
-//	public void setPoint(int point) {
-//		this.point = point;
-//	}
+	public String getCalendar() {
+		return Calendar;
+	}
+	public void setCalendar(String Calendar) {
+		this.Calendar = Calendar;
+	
+	}public String getMonth() {
+		return Month;
+	}
+	public void setMonth(String Month) {
+		this.Month = Month;
+	
+	}
+
 
 }
