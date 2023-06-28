@@ -284,7 +284,7 @@ public class Login extends JFrame {
 
 		jf2.add(shph4);
 
-		JButton bott1 = new JButton("휴대폰 인증");
+		JButton bott1 = new JButton("확인");
 		bott1.setSize(340, 30);
 		bott1.setLocation(25, 150);
 
@@ -295,182 +295,186 @@ public class Login extends JFrame {
 		bott1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				findphone1();
+				findpass1();
 			}
 		});
 
 	}
+	
+	public void findpass1() {
+		
+	}
 
 	// 비밀번호찾기 -휴대폰 인증창
-	public void findphone1() {
-		JFrame jf5 = new JFrame();
-		jf5.setLocation(600, 300);
-		jf5.setSize(380, 270);
-		jf5.setTitle("휴대폰인증");
-		jf5.setLayout(null);
-		jf5.setVisible(true);
-
-		JLabel sk3 = new JLabel("SK");
-		sk3.setSize(70, 30);
-		sk3.setLocation(85, 15);
-		sk3.setFont(new Font("고딕", Font.BOLD, 15));
-
-		jf5.add(sk3);
-
-		JCheckBox sk2 = new JCheckBox();
-		sk2.setSize(20, 20);
-		sk2.setLocation(55, 20);
-		jf5.add(sk2);
-
-		JLabel LG2 = new JLabel("LG");
-		LG2.setSize(70, 30);
-		LG2.setLocation(145, 15);
-		LG2.setFont(new Font("고딕", Font.BOLD, 15));
-
-		jf5.add(LG2);
-
-		JCheckBox LG3 = new JCheckBox();
-		LG3.setSize(20, 20);
-		LG3.setLocation(115, 20);
-		jf5.add(LG3);
-
-		JLabel KT3 = new JLabel("KT");
-		KT3.setSize(70, 30);
-		KT3.setLocation(205, 15);
-		KT3.setFont(new Font("고딕", Font.BOLD, 15));
-
-		jf5.add(KT3);
-
-		JCheckBox KT4 = new JCheckBox();
-		KT4.setSize(20, 20);
-		KT4.setLocation(175, 20);
-		jf5.add(KT4);
-
-		JLabel R2 = new JLabel("알뜰폰");
-		R2.setSize(70, 30);
-		R2.setLocation(265, 15);
-		R2.setFont(new Font("고딕", Font.BOLD, 15));
-
-		jf5.add(R2);
-
-		JCheckBox R3 = new JCheckBox();
-		R3.setSize(20, 20);
-		R3.setLocation(235, 20);
-		jf5.add(R3);
-
-		JRadioButton rd5 = new JRadioButton("전체동의");
-		rd5.setSize(150, 30);
-		rd5.setLocation(30, 80);
-		rd5.setFont(new Font("고딕", Font.BOLD, 15));
-
-		JRadioButton rd6 = new JRadioButton("개인정보이용동의");
-		rd6.setSize(150, 30);
-		rd6.setLocation(30, 110);
-
-		JRadioButton rd7 = new JRadioButton("고유식별정보처리동의");
-		rd7.setSize(150, 30);
-		rd7.setLocation(180, 110);
-
-		JRadioButton rd8 = new JRadioButton("서비스이용약관동의");
-		rd8.setSize(150, 30);
-		rd8.setLocation(30, 140);
-
-		JRadioButton rd9 = new JRadioButton("통신사이용약관동의");
-		rd9.setSize(150, 30);
-		rd9.setLocation(180, 140);
-
-		JButton SNSCK1 = new JButton("문자(SNS)로 인증");
-		SNSCK1.setSize(340, 30);
-		SNSCK1.setLocation(13, 190);
-		SNSCK1.setHorizontalAlignment(JLabel.CENTER);
-
-		jf5.add(SNSCK1);
-
-		SNSCK1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				findsns1();
-			}
-		});
+//	public void findphone1() {
+//		JFrame jf5 = new JFrame();
+//		jf5.setLocation(600, 300);
+//		jf5.setSize(380, 270);
+//		jf5.setTitle("휴대폰인증");
+//		jf5.setLayout(null);
+//		jf5.setVisible(true);
+//
+//		JLabel sk3 = new JLabel("SK");
+//		sk3.setSize(70, 30);
+//		sk3.setLocation(85, 15);
+//		sk3.setFont(new Font("고딕", Font.BOLD, 15));
+//
+//		jf5.add(sk3);
+//
+//		JCheckBox sk2 = new JCheckBox();
+//		sk2.setSize(20, 20);
+//		sk2.setLocation(55, 20);
+//		jf5.add(sk2);
+//
+//		JLabel LG2 = new JLabel("LG");
+//		LG2.setSize(70, 30);
+//		LG2.setLocation(145, 15);
+//		LG2.setFont(new Font("고딕", Font.BOLD, 15));
+//
+//		jf5.add(LG2);
+//
+//		JCheckBox LG3 = new JCheckBox();
+//		LG3.setSize(20, 20);
+//		LG3.setLocation(115, 20);
+//		jf5.add(LG3);
+//
+//		JLabel KT3 = new JLabel("KT");
+//		KT3.setSize(70, 30);
+//		KT3.setLocation(205, 15);
+//		KT3.setFont(new Font("고딕", Font.BOLD, 15));
+//
+//		jf5.add(KT3);
+//
+//		JCheckBox KT4 = new JCheckBox();
+//		KT4.setSize(20, 20);
+//		KT4.setLocation(175, 20);
+//		jf5.add(KT4);
+//
+//		JLabel R2 = new JLabel("알뜰폰");
+//		R2.setSize(70, 30);
+//		R2.setLocation(265, 15);
+//		R2.setFont(new Font("고딕", Font.BOLD, 15));
+//
+//		jf5.add(R2);
+//
+//		JCheckBox R3 = new JCheckBox();
+//		R3.setSize(20, 20);
+//		R3.setLocation(235, 20);
+//		jf5.add(R3);
+//
+//		JRadioButton rd5 = new JRadioButton("전체동의");
+//		rd5.setSize(150, 30);
+//		rd5.setLocation(30, 80);
+//		rd5.setFont(new Font("고딕", Font.BOLD, 15));
+//
+//		JRadioButton rd6 = new JRadioButton("개인정보이용동의");
+//		rd6.setSize(150, 30);
+//		rd6.setLocation(30, 110);
+//
+//		JRadioButton rd7 = new JRadioButton("고유식별정보처리동의");
+//		rd7.setSize(150, 30);
+//		rd7.setLocation(180, 110);
+//
+//		JRadioButton rd8 = new JRadioButton("서비스이용약관동의");
+//		rd8.setSize(150, 30);
+//		rd8.setLocation(30, 140);
+//
+//		JRadioButton rd9 = new JRadioButton("통신사이용약관동의");
+//		rd9.setSize(150, 30);
+//		rd9.setLocation(180, 140);
+//
+//		JButton SNSCK1 = new JButton("문자(SNS)로 인증");
+//		SNSCK1.setSize(340, 30);
+//		SNSCK1.setLocation(13, 190);
+//		SNSCK1.setHorizontalAlignment(JLabel.CENTER);
+//
+//		jf5.add(SNSCK1);
+//
+//		SNSCK1.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//
+//				findsns1();
+//			}
+//		});
 
 //        // 1번 라디오 버튼 눌러져있도록
 //        rd1.setSelected(true);
 
 		// 라디오 버튼을 그룹화 하기위한 객체 생성
-		ButtonGroup groupRd = new ButtonGroup();
-
-		// 그룹에 라디오 버튼 포함시킨다.
-		groupRd.add(rd5);
-		groupRd.add(rd6);
-		groupRd.add(rd7);
-		groupRd.add(rd8);
-		groupRd.add(rd9);
-
-		jf5.add(SNSCK1);
-		jf5.add(rd5);
-		jf5.add(rd6);
-		jf5.add(rd7);
-		jf5.add(rd8);
-		jf5.add(rd9);
-
-		// 윈도우 창 크기 설정(가로, 세로)
-//        setSize(500, 500);
-
-	}
+//		ButtonGroup groupRd = new ButtonGroup();
+//
+//		// 그룹에 라디오 버튼 포함시킨다.
+//		groupRd.add(rd5);
+//		groupRd.add(rd6);
+//		groupRd.add(rd7);
+//		groupRd.add(rd8);
+//		groupRd.add(rd9);
+//
+//		jf5.add(SNSCK1);
+//		jf5.add(rd5);
+//		jf5.add(rd6);
+//		jf5.add(rd7);
+//		jf5.add(rd8);
+//		jf5.add(rd9);
+//
+//		// 윈도우 창 크기 설정(가로, 세로)
+////        setSize(500, 500);
+//
+//	}
 
 	// sns 인증창(비민번호
-	public void findsns1() {
-		JFrame jf7 = new JFrame();
-		jf7.setLocation(600, 250);
-		jf7.setSize(410, 300);
-		jf7.setTitle("SNS 인증");
-		jf7.setLayout(null);
-//		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JLabel SNS99 = new JLabel("SNS로 인증번호 전송하였습니다. ");
-		SNS99.setSize(300, 50);
-		SNS99.setLocation(45, 5);
-		SNS99.setHorizontalAlignment(JLabel.CENTER);
-		SNS99.setFont(new Font("고딕", Font.BOLD, 18));
-
-		jf7.add(SNS99);
-
-		JLabel SNSNUM2 = new JLabel("인증번호");
-		SNSNUM2.setSize(70, 30);
-		SNSNUM2.setLocation(35, 60);
-		SNSNUM2.setHorizontalAlignment(JLabel.CENTER);
-
-		jf7.add(SNSNUM2);
-
-		JTextField SNSNUM22 = new JTextField(10);
-		SNSNUM22.setSize(300, 30);
-		SNSNUM22.setLocation(40, 90);
-
-		jf7.add(SNSNUM22);
-
-		JLabel SNSNUM3 = new JLabel("★인증문자가 오지 않으면 수신차단 메시지 또는 스팸함을 확인해 주세요.");
-		SNSNUM3.setSize(370, 30);
-		SNSNUM3.setLocation(40, 120);
-		SNSNUM3.setForeground(Color.red);
+//	public void findsns1() {
+//		JFrame jf7 = new JFrame();
+//		jf7.setLocation(600, 250);
+//		jf7.setSize(410, 300);
+//		jf7.setTitle("SNS 인증");
+//		jf7.setLayout(null);
+////		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//		JLabel SNS99 = new JLabel("SNS로 인증번호 전송하였습니다. ");
+//		SNS99.setSize(300, 50);
+//		SNS99.setLocation(45, 5);
+//		SNS99.setHorizontalAlignment(JLabel.CENTER);
+//		SNS99.setFont(new Font("고딕", Font.BOLD, 18));
+//
+//		jf7.add(SNS99);
+//
+//		JLabel SNSNUM2 = new JLabel("인증번호");
+//		SNSNUM2.setSize(70, 30);
+//		SNSNUM2.setLocation(35, 60);
 //		SNSNUM2.setHorizontalAlignment(JLabel.CENTER);
-		SNSNUM3.setFont(new Font("고딕", Font.BOLD, 9));
-
-		jf7.add(SNSNUM3);
-
-		JButton bott11 = new JButton("재전송");
-		bott11.setSize(80, 30);
-		bott11.setLocation(150, 150);
-
-		jf7.add(bott11);
-
-		JButton bott99 = new JButton("2확인");
-		bott99.setSize(340, 30);
-		bott99.setLocation(25, 210);
-
-		jf7.add(bott99);
-
-		jf7.setVisible(true);
-	}
+//
+//		jf7.add(SNSNUM2);
+//
+//		JTextField SNSNUM22 = new JTextField(10);
+//		SNSNUM22.setSize(300, 30);
+//		SNSNUM22.setLocation(40, 90);
+//
+//		jf7.add(SNSNUM22);
+//
+//		JLabel SNSNUM3 = new JLabel("★인증문자가 오지 않으면 수신차단 메시지 또는 스팸함을 확인해 주세요.");
+//		SNSNUM3.setSize(370, 30);
+//		SNSNUM3.setLocation(40, 120);
+//		SNSNUM3.setForeground(Color.red);
+////		SNSNUM2.setHorizontalAlignment(JLabel.CENTER);
+//		SNSNUM3.setFont(new Font("고딕", Font.BOLD, 9));
+//
+//		jf7.add(SNSNUM3);
+//
+//		JButton bott11 = new JButton("재전송");
+//		bott11.setSize(80, 30);
+//		bott11.setLocation(150, 150);
+//
+//		jf7.add(bott11);
+//
+//		JButton bott99 = new JButton("2확인");
+//		bott99.setSize(340, 30);
+//		bott99.setLocation(25, 210);
+//
+//		jf7.add(bott99);
+//
+//		jf7.setVisible(true);
+//	}
 
 //회원가입 창
 	public void findjoin() {
@@ -619,7 +623,7 @@ public class Login extends JFrame {
 				OnlineDAO dao = new OnlineDAO();
 //				System.out.print("asdas");
 			
-				dao.join(member);
+				dao.joinId(member);
 //				dao.join1(member);
 //				dao.joinId(member);
 				
@@ -776,6 +780,12 @@ public class Login extends JFrame {
 					if (password11.getText().equals(pwd)) {
 						msg = "로그인이 되었습니다!";
 						JOptionPane.showMessageDialog(null, msg);
+						
+
+						CalendarExample cd = new CalendarExample();
+						
+						cd.createAndShowGUI(data.getId(),data.getPwd(),data.getName(),data.getPhone());
+						
 					} else if(!password11.getText().equals(pwd)){
 						msg = "비밀번호를 다시 입력하세요.";
 						JOptionPane.showMessageDialog(null, msg);

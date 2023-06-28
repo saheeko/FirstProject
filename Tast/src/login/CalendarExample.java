@@ -21,9 +21,7 @@ public class CalendarExample {
 	private static String tfpass;
 	private static String tfname;
 	private static String tfpho;
-	
-	
-	
+
 	public void createAndShowGUI(String tfid, String tfpass, String tfname, String tfpho) {
 		// 메시지 띄우기 청구날짜 지정해주세요/
 		String msg = " ";
@@ -33,7 +31,7 @@ public class CalendarExample {
 		this.tfpass = tfpass;
 		this.tfname = tfname;
 		this.tfpho = tfpho;
-		
+
 		// JFrame 생성
 		frame = new JFrame("2023 Calendar");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -140,28 +138,19 @@ public class CalendarExample {
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 //               JOptionPane.showMessageDialog(frame, "청구 날짜가 지정되었습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
-					   JButton clickedButton = (JButton) e.getSource();
-				        String selectedDate = clickedButton.getText();
-				        String selectedMonth = getMonthName(month); // Get the selected month name
-				        String message = "예약 날짜는 " + selectedMonth + " " + selectedDate + "일로 설정되었습니다.";
+					JButton clickedButton = (JButton) e.getSource();
+					String selectedDate = clickedButton.getText();
+					String selectedMonth = getMonthName(month); // Get the selected month name
+					String message = "예약 날짜는 " + selectedMonth + " " + selectedDate + "일로 설정되었습니다.";
+
 					
-					
-				
+					OnlineDAO OD = new OnlineDAO();
+					OD.SelectDateInputDB(selectedMonth, selectedDate, tfid);
 //					String test = Dao.join2(member);
 
-
-				
-								
-					
-					OnlineDAO onlineDAO = new OnlineDAO();
-					OnlineVO member = new OnlineVO(tfid, tfpass, tfname, tfpho, selectedMonth, selectedDate);
-					onlineDAO.join(member);
-					
-					///JOIN 지정해야됨
+					/// JOIN 지정해야됨
 					JOptionPane.showMessageDialog(frame, message, "예약 날짜 지정", JOptionPane.INFORMATION_MESSAGE);
-					
-					
-					
+
 				}
 			});
 			datePanel.add(button);
