@@ -304,15 +304,15 @@ public class Login extends JFrame {
 				nail2.setId(shid4.getText());
 				nail2.setPhone(shph4.getText());
 
-				nail2.setId(nail2.getId());
-				nail2.setPhone(nail2.getPhone());
+//				nail2.setId(nail2.getId());
+//				nail2.setPhone(nail2.getPhone());
 
 				if (nail2.getId().equals("") || nail2.getPhone().equals("")) {
 					msg = "입력되지 않은 사항이 있습니다.";
-				} else if (!nail2.getId().equals(shid4)) {
+				} else if (!nail2.getId().equals(shid4.getText())) {
 					msg = "입력된 아이디가 틀렸습니다. ";
-				} else if (!nail2.getPhone().equals(shph4)) {
-					msg = "입력된 비밀번호가 틀렸습니다.";
+				} else if (!nail2.getPhone().equals(shph4.getText())) {
+					msg = "입력된 핸드폰번호가 틀렸습니다.";
 				} else {
 					msg = "귀하의 비밀번호는 " + nail2.getPwd() + " 입니다.";
 				}

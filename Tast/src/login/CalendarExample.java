@@ -142,15 +142,15 @@ public class CalendarExample {
 					JButton clickedButton = (JButton) e.getSource();
 					String selectedDate = clickedButton.getText();
 					String selectedMonth = getMonthName(month); // Get the selected month name
-					String message = "예약 날짜는 " + selectedMonth + " " + selectedDate + "일로 설정되었습니다.";
+//					String message = "예약 날짜는 " + selectedMonth + " " + selectedDate + "일로 설정되었습니다.";
 
-					
-					OnlineDAO OD = new OnlineDAO();
-					OD.SelectDateInputDB(selectedMonth, selectedDate, tfid);
-//					String test = Dao.join2(member);
-
-					/// JOIN 지정해야됨
-					JOptionPane.showMessageDialog(frame, message, "예약 날짜 지정", JOptionPane.INFORMATION_MESSAGE);
+					   showTimeSelection(selectedMonth, selectedDate);
+//					OnlineDAO OD = new OnlineDAO();
+//					OD.SelectDateInputDB(selectedMonth, selectedDate, tfid);
+////					String test = Dao.join2(member);
+//
+//					/// JOIN 지정해야됨
+//					JOptionPane.showMessageDialog(frame, message, "예약 날짜 지정", JOptionPane.INFORMATION_MESSAGE);
 
 				}
 			});
@@ -159,6 +159,27 @@ public class CalendarExample {
 
 		return panel;
 	}
+	 public static void showTimeSelection(String selectedMonth, String selectedDate) {
+	        Object[] options = { "10AM", "1PM", "3PM", "5PM", "7PM" };
+	        int choice = JOptionPane.showOptionDialog(frame, "예약 시간을 선택해주세요.", "시간 선택", JOptionPane.DEFAULT_OPTION,
+	                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+	        if (choice != JOptionPane.CLOSED_OPTION) {
+	            String selectedTime = (String) options[choice];
+	            String message = "예약 날짜는 " + selectedMonth + " " + selectedDate + "일 " + selectedTime + "로 설정되었습니다.";
+
+	            // Perform your desired actions with the selected date and time here
+	            // ...
+
+
+
+				OnlineDAO OD = new OnlineDAO();
+				OD.SelectDateInputDB(selectedMonth, selectedDate, tfid, selectedTime);
+//				String test = Dao.join2(member);
+
+	            JOptionPane.showMessageDialog(frame, message, "예약 날짜 및 시간 지정", JOptionPane.INFORMATION_MESSAGE);
+	        }
+	    }
 
 	// 요일을 계산하는 메서드
 	public static int getDayOfWeek(int year, int month, int day) {

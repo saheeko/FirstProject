@@ -8,6 +8,7 @@ public class OnlineVO {
 	private String phone;
 	private String Calendar;
 	private String Month;
+	private String TIME;
 	
 	public OnlineVO() {
 	
@@ -29,13 +30,14 @@ public class OnlineVO {
 //		Calendar = joincalendar;
 //
 //	}
-	public OnlineVO(String joinsh, String joinpassword, String joinname, String joinphone, String joinmonth, String joincalendar) {
+	public OnlineVO(String joinsh, String joinpassword, String joinname, String joinphone, String joinmonth, String joincalendar, String jointime) {
 		id = joinsh;
 		pwd = joinpassword;
 		name = joinname;
 		phone = joinphone;
 		Month = joinmonth;
 		Calendar = joincalendar;
+		TIME = jointime;
 		
 
 	}
@@ -85,6 +87,12 @@ public class OnlineVO {
 	public void setMonth(String Month) {
 		this.Month = Month;
 	
+	}public String getTime() {
+		return TIME;
+	}
+
+	public void setTime(String TIME) {
+		this.TIME = TIME;
 	}
 
 

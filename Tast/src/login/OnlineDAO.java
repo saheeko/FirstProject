@@ -133,11 +133,11 @@ public class OnlineDAO {
 		}
 	}
 
-	public void SelectDateInputDB(String month, String date, String id) {
+	public void SelectDateInputDB(String month, String date, String id, String time) {
 		try {
 			connDB();
 			
-			String sql = "UPDATE MEMBER SET MONTH = '"+ month +"', CALENDAR = '" + date + "' WHERE id = '" + id + "'";
+			String sql = "UPDATE MEMBER SET MONTH = '"+ month +"', CALENDAR = '" + date + "', TIME = '" + time + "' WHERE id = '" + id + "'";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -149,7 +149,7 @@ public class OnlineDAO {
 
 
 			if (r == 2) {
-				System.out.println("날짜 선택 완료");
+				System.out.println("날짜  및 시간 선택 완료");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
