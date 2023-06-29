@@ -4,9 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -651,57 +655,6 @@ public class Login extends JFrame {
 //		
 	}
 
-////시간 선택 예약창 만들기
-//  로그인 하고 캘린더 날짜 지정하고 시간선택창 나오게하기
-	// 하고나서 메세지창 예약완료되엇다고 나오게하기
-
-	public void time() {
-		JFrame time1 = new JFrame();
-		time1.setLocation(600, 300);
-		time1.setSize(400, 250);
-		time1.setTitle("예약시간 지정");
-		time1.setLayout(null);
-//		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JLabel title10 = new JLabel("Select Time");
-		title10.setBounds(80, 45, 400, 60);
-		title10.setFont(title10.getFont().deriveFont(50.0f));
-
-		time1.add(title10);
-
-		JButton time10 = new JButton("10AM");
-		time10.setSize(110, 25);
-		time10.setLocation(290, 300);
-
-		time1.add(time10);
-
-		JButton time20 = new JButton("1PM");
-		time20.setSize(110, 25);
-		time20.setLocation(290, 300);
-
-		time1.add(time20);
-
-		JButton time30 = new JButton("3PM");
-		time30.setSize(110, 25);
-		time30.setLocation(290, 300);
-
-		time1.add(time30);
-
-		JButton time40 = new JButton("5PM");
-		time40.setSize(110, 25);
-		time40.setLocation(290, 300);
-
-		time1.add(time40);
-
-		JButton time50 = new JButton("7PM");
-		time50.setSize(110, 25);
-		time50.setLocation(290, 300);
-
-		time1.add(time50);
-
-		time1.setVisible(true);
-	}
-
 //로그인창에 들어간것들
 	public Login() {
 
@@ -714,11 +667,12 @@ public class Login extends JFrame {
 		jf.setLayout(null);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JLabel title1 = new JLabel("Online Claim");
-		title1.setBounds(80, 45, 400, 60);
+		JLabel title1 = new JLabel("HaHee Nail");
+		title1.setBounds(100, 45, 400, 60);
 		title1.setFont(title1.getFont().deriveFont(50.0f));
-
+		title1.setForeground(Color.blue);
 		jf.add(title1);
+		
 
 		JLabel sh = new JLabel("ID  ");
 		sh.setSize(80, 30);
@@ -793,13 +747,6 @@ public class Login extends JFrame {
 //		bot4.setIcon(new Icon("C:\\gggggg.png");
 		jf.add(bot4);
 
-//		try {
-//			bot4.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("C:\\gggggg.png")))));
-//			}catch(IOException e) {
-//				e.printStackTrace();
-//			}
-//		
-
 		jf.setVisible(true);
 
 //		AbstractButton bott;
@@ -848,6 +795,20 @@ public class Login extends JFrame {
 					if (password11.getText().equals(pwd)) {
 						msg = "로그인이 되었습니다!";
 						JOptionPane.showMessageDialog(null, msg);
+
+						JFrame picture = new JFrame();
+						picture.setLocation(100, 100);
+						picture.setSize(800, 800);
+						picture.setTitle("★★★이달의 추천 디자인★★★");
+						picture.setLayout(null);
+
+						try {
+							picture.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("C:\\NAIL.jpg")))));
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+
+						picture.setVisible(true);
 
 						CalendarExample cd = new CalendarExample();
 

@@ -163,19 +163,21 @@ public class CalendarExample {
 	        Object[] options = { "10AM", "1PM", "3PM", "5PM", "7PM" };
 	        int choice = JOptionPane.showOptionDialog(frame, "예약 시간을 선택해주세요.", "시간 선택", JOptionPane.DEFAULT_OPTION,
 	                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
+	        
 	        if (choice != JOptionPane.CLOSED_OPTION) {
 	            String selectedTime = (String) options[choice];
 	            String message = "예약 날짜는 " + selectedMonth + " " + selectedDate + "일 " + selectedTime + "로 설정되었습니다.";
-
-	            // Perform your desired actions with the selected date and time here
-	            // ...
+	            
+	      
+	            
+//	            2.시간선택까지 완료하면 "좋아하는 컬러 or 추구하는 디자인이 있다면 기재해주세요" 라는 입력창 만들기.
+//	            @@@입력하면 디비에 연동시켜 저장시키기 @@@
 
 
 
 				OnlineDAO OD = new OnlineDAO();
 				OD.SelectDateInputDB(selectedMonth, selectedDate, tfid, selectedTime);
-//				String test = Dao.join2(member);
+
 
 	            JOptionPane.showMessageDialog(frame, message, "예약 날짜 및 시간 지정", JOptionPane.INFORMATION_MESSAGE);
 	        }

@@ -148,7 +148,7 @@ public class OnlineDAO {
 			System.out.println("변경된 row : " + r);
 
 
-			if (r == 2) {
+			if (r == 3) {
 				System.out.println("날짜  및 시간 선택 완료");
 			}
 		} catch (Exception e) {
