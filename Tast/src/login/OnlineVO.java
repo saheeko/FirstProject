@@ -8,8 +8,11 @@ public class OnlineVO {
 	private String phone;
 	private String Calendar;
 	private String Month;
-
-
+	
+	public OnlineVO() {
+	
+	}
+	
 	public OnlineVO(String sh, String password) {
 		id = sh;
 		pwd = password;

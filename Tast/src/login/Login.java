@@ -295,14 +295,31 @@ public class Login extends JFrame {
 		bott1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				findpass1();
+				OnlineDAO nail = new OnlineDAO();
+				OnlineVO nail2 = new OnlineVO();
+				String msg = "";
+
+				nail2 = nail.findpass(nail2);
+//				OnlineVO findMember = nail.findpass(nail2);
+				nail2.setId(shid4.getText());
+				nail2.setPhone(shph4.getText());
+
+				nail2.setId(nail2.getId());
+				nail2.setPhone(nail2.getPhone());
+
+				if (nail2.getId().equals("") || nail2.getPhone().equals("")) {
+					msg = "입력되지 않은 사항이 있습니다.";
+				} else if (!nail2.getId().equals(shid4)) {
+					msg = "입력된 아이디가 틀렸습니다. ";
+				} else if (!nail2.getPhone().equals(shph4)) {
+					msg = "입력된 비밀번호가 틀렸습니다.";
+				} else {
+					msg = "귀하의 비밀번호는 " + nail2.getPwd() + " 입니다.";
+				}
+				JOptionPane.showMessageDialog(null, msg);
 			}
 		});
 
-	}
-	
-	public void findpass1() {
-		
 	}
 
 	// 비밀번호찾기 -휴대폰 인증창
@@ -400,7 +417,7 @@ public class Login extends JFrame {
 //        // 1번 라디오 버튼 눌러져있도록
 //        rd1.setSelected(true);
 
-		// 라디오 버튼을 그룹화 하기위한 객체 생성
+	// 라디오 버튼을 그룹화 하기위한 객체 생성
 //		ButtonGroup groupRd = new ButtonGroup();
 //
 //		// 그룹에 라디오 버튼 포함시킨다.
@@ -622,16 +639,67 @@ public class Login extends JFrame {
 				OnlineVO member = new OnlineVO(tfid, tfpass, tfname, tfpho);
 				OnlineDAO dao = new OnlineDAO();
 //				System.out.print("asdas");
-			
+
 				dao.joinId(member);
 //				dao.join1(member);
 //				dao.joinId(member);
-				
+
 //				CalendarExample cd = new CalendarExample();
 //				cd.createAndShowGUI(tfid, tfpass, tfname, tfpho);
 			}
 		});
 //		
+	}
+
+////시간 선택 예약창 만들기
+//  로그인 하고 캘린더 날짜 지정하고 시간선택창 나오게하기
+	// 하고나서 메세지창 예약완료되엇다고 나오게하기
+
+	public void time() {
+		JFrame time1 = new JFrame();
+		time1.setLocation(600, 300);
+		time1.setSize(400, 250);
+		time1.setTitle("예약시간 지정");
+		time1.setLayout(null);
+//		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JLabel title10 = new JLabel("Select Time");
+		title10.setBounds(80, 45, 400, 60);
+		title10.setFont(title10.getFont().deriveFont(50.0f));
+
+		time1.add(title10);
+
+		JButton time10 = new JButton("10AM");
+		time10.setSize(110, 25);
+		time10.setLocation(290, 300);
+
+		time1.add(time10);
+
+		JButton time20 = new JButton("1PM");
+		time20.setSize(110, 25);
+		time20.setLocation(290, 300);
+
+		time1.add(time20);
+
+		JButton time30 = new JButton("3PM");
+		time30.setSize(110, 25);
+		time30.setLocation(290, 300);
+
+		time1.add(time30);
+
+		JButton time40 = new JButton("5PM");
+		time40.setSize(110, 25);
+		time40.setLocation(290, 300);
+
+		time1.add(time40);
+
+		JButton time50 = new JButton("7PM");
+		time50.setSize(110, 25);
+		time50.setLocation(290, 300);
+
+		time1.add(time50);
+
+		time1.setVisible(true);
 	}
 
 //로그인창에 들어간것들
@@ -780,13 +848,12 @@ public class Login extends JFrame {
 					if (password11.getText().equals(pwd)) {
 						msg = "로그인이 되었습니다!";
 						JOptionPane.showMessageDialog(null, msg);
-						
 
 						CalendarExample cd = new CalendarExample();
-						
-						cd.createAndShowGUI(data.getId(),data.getPwd(),data.getName(),data.getPhone());
-						
-					} else if(!password11.getText().equals(pwd)){
+
+						cd.createAndShowGUI(data.getId(), data.getPwd(), data.getName(), data.getPhone());
+
+					} else if (!password11.getText().equals(pwd)) {
 						msg = "비밀번호를 다시 입력하세요.";
 						JOptionPane.showMessageDialog(null, msg);
 					}
@@ -836,4 +903,5 @@ public class Login extends JFrame {
 //      
 
 	}
+
 }

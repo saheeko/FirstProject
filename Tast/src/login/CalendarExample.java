@@ -131,6 +131,7 @@ public class CalendarExample {
 			datePanel.add(emptyButton);
 		}
 
+
 		// 날짜 버튼으로 날짜 표시
 		int lastDayOfMonth = getLastDayOfMonth(year, month);
 		for (int day = 1; day <= lastDayOfMonth; day++) {

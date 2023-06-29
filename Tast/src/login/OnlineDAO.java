@@ -155,6 +155,35 @@ public class OnlineDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public OnlineVO findpass(OnlineVO member) {
+		OnlineVO myMember = new OnlineVO();
+		
+	      //System.out.println(member + "asdsadsad");
+	      try {
+	         connDB();
+	         String query ="select * from Member where NAME = ? and PHONE = ?";
+
+	         pstmt = con.prepareStatement(query); //?에 데이터를 넣기위해 그냥쓰는거
+
+	         pstmt.setString(1, member.getId());
+	         pstmt.setString(2, member.getPhone());
+	         pstmt.setString(2, member.getPwd());
+
+	         rs = pstmt.executeQuery(); //쿼리 결과를 rs에 반환시켜줌
+	         rs.next();
+	         while (rs.next()) {
+	            myMember.setId(rs.getString("id"));
+	            myMember.setPhone(rs.getString("phone"));
+	            myMember.setPwd(rs.getString("pwd"));
+	
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      return myMember; // 반환 Id가 들어있음
+
+	   }
 /////////////////////////////////////
 
 	/////////////////////////
