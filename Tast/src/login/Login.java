@@ -67,7 +67,7 @@ public class Login extends JFrame {
 
 		jf1.add(shph1);
 
-		JButton bott = new JButton("휴대폰 인증");
+		JButton bott = new JButton("확인");
 		bott.setSize(340, 30);
 		bott.setLocation(25, 150);
 
@@ -77,11 +77,37 @@ public class Login extends JFrame {
 		bott.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				findphone();
+				OnlineDAO nail = new OnlineDAO();
+				OnlineVO nail2 = new OnlineVO();
+				String msg = "";
+//				JTextField shph4 = new JTextField(10);
+//				shph4.setSize(340, 30);
+//				shph4.setLocation(25, 90);
+//
+//				jf2.add(shph4);
+				
+				nail2 = nail. findidd(nail2);
+//				OnlineVO findMember = nail.findpass(nail2);
+
+//				nail2.setPwd(shph4.getText());
+//				nail2.setId(nail2.getId());
+//				nail2.setPhone(nail2.getPhone());
+
+				if (nail2.getName().equals("") || nail2.getPhone().equals("")) {
+					msg = "입력되지 않은 사항이 있습니다.";
+				} else if (!nail2.getId().equals(shid1.getText())) {
+					msg = "입력된 아이디가 틀렸습니다. ";
+				} else if (!nail2.getPhone().equals(shph1.getText())) {
+					msg = "입력된 핸드폰번호가 틀렸습니다.";
+				} else {
+					msg = "귀하의 비밀번호는 " + nail2. getId() + " 입니다.";
+				}
+				JOptionPane.showMessageDialog(null, msg);
 			}
 		});
 
 	}
+	
 
 	// 아이디찾기 -휴대폰 인증창
 	public void findphone() {
@@ -302,14 +328,20 @@ public class Login extends JFrame {
 				OnlineDAO nail = new OnlineDAO();
 				OnlineVO nail2 = new OnlineVO();
 				String msg = "";
-
-				nail2 = nail.findpass(nail2);
-//				OnlineVO findMember = nail.findpass(nail2);
+//				JTextField shph4 = new JTextField(10);
+//				shph4.setSize(340, 30);
+//				shph4.setLocation(25, 90);
+//
+//				jf2.add(shph4);
+				
 				nail2.setId(shid4.getText());
 				nail2.setPhone(shph4.getText());
+				nail2 = nail.findpass(nail2);
+	
+//				OnlineVO findMember = nail.findpass(nail2);
 
-//				nail2.setId(nail2.getId());
-//				nail2.setPhone(nail2.getPhone());
+//				nail2.setPwd(shph4.getText());
+		
 
 				if (nail2.getId().equals("") || nail2.getPhone().equals("")) {
 					msg = "입력되지 않은 사항이 있습니다.";

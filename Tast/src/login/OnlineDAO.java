@@ -133,11 +133,11 @@ public class OnlineDAO {
 		}
 	}
 
-	public void SelectDateInputDB(String month, String date, String id, String time) {
+	public void SelectDateInputDB(String month, String date, String id, String time, String mention) {
 		try {
 			connDB();
 			
-			String sql = "UPDATE MEMBER SET MONTH = '"+ month +"', CALENDAR = '" + date + "', TIME = '" + time + "' WHERE id = '" + id + "'";
+			String sql = "UPDATE MEMBER SET MONTH = '"+ month +"', CALENDAR = '" + date + "', TIME = '" + time + "', MENTION = '" + mention + "' WHERE id = '" + id + "'";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -148,40 +148,81 @@ public class OnlineDAO {
 			System.out.println("변경된 row : " + r);
 
 
-			if (r == 3) {
-				System.out.println("날짜  및 시간 선택 완료");
+			if (r == 4) {
+				System.out.println("날짜 및 시간 선택 완료");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	    
 	public OnlineVO findpass(OnlineVO member) {
+		System.out.println("Method(findpass())");
 		OnlineVO myMember = new OnlineVO();
 		
 	      //System.out.println(member + "asdsadsad");
 	      try {
 	         connDB();
-	         String query ="select * from Member where NAME = ? and PHONE = ?";
+	         String query ="select * from Member where ID=? and PHONE=?";
 
 	         pstmt = con.prepareStatement(query); //?에 데이터를 넣기위해 그냥쓰는거
 
+         
 	         pstmt.setString(1, member.getId());
 	         pstmt.setString(2, member.getPhone());
-	         pstmt.setString(2, member.getPwd());
+//	         pstmt.setString(3, member.getPwd());
 
-	         rs = pstmt.executeQuery(); //쿼리 결과를 rs에 반환시켜줌
-	         rs.next();
+	         rs = pstmt.executeQuery(); //쿼리 결과를 rs에 반환시켜줌	         
+	         
 	         while (rs.next()) {
 	            myMember.setId(rs.getString("id"));
 	            myMember.setPhone(rs.getString("phone"));
-	            myMember.setPwd(rs.getString("pwd"));
+	            myMember.setPwd(rs.getString("password"));
 	
+	            System.out.println("myMember.getId() : " + myMember.getId());
+	            System.out.println("myMember.getPhone() : " + myMember.getPhone());
+	            System.out.println("myMember.getPwd() : " + myMember.getPwd());
 	         }
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }
 	      return myMember; // 반환 Id가 들어있음
+
+	   }
+	
+	
+	public OnlineVO findidd(OnlineVO member) {
+		System.out.println("Method(findpass())");
+		OnlineVO myMember1 = new OnlineVO();
+		
+	      //System.out.println(member + "asdsadsad");
+	      try {
+	         connDB();
+	         String query ="select * from Member where NAME =? and PHONE=?";
+
+	         pstmt = con.prepareStatement(query); //?에 데이터를 넣기위해 그냥쓰는거
+
+         
+	         pstmt.setString(1, member.getName());
+	         pstmt.setString(2, member.getPhone());
+//	         pstmt.setString(3, member.getPwd());
+
+	         rs = pstmt.executeQuery(); //쿼리 결과를 rs에 반환시켜줌	         
+	         
+	         while (rs.next()) {
+	            myMember1.setId(rs.getString("name"));
+	            myMember1.setPhone(rs.getString("phone"));
+	            myMember1.setPwd(rs.getString("password"));
+	
+	            System.out.println("myMember.getName() : " + myMember1.getName());
+	            System.out.println("myMember.getPhone() : " + myMember1.getPhone());
+	            System.out.println("myMember.getPwd() : " + myMember1.getPwd());
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      return myMember1; // 반환 Id가 들어있음
 
 	   }
 /////////////////////////////////////

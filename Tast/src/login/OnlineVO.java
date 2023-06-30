@@ -9,11 +9,12 @@ public class OnlineVO {
 	private String Calendar;
 	private String Month;
 	private String TIME;
-	
+	private String MENTION;
+
 	public OnlineVO() {
-	
+
 	}
-	
+
 	public OnlineVO(String sh, String password) {
 		id = sh;
 		pwd = password;
@@ -26,11 +27,13 @@ public class OnlineVO {
 		phone = joinphone;
 
 	}
+
 //	public OnlineVO(String joincalendar) {
 //		Calendar = joincalendar;
 //
 //	}
-	public OnlineVO(String joinsh, String joinpassword, String joinname, String joinphone, String joinmonth, String joincalendar, String jointime) {
+	public OnlineVO(String joinsh, String joinpassword, String joinname, String joinphone, String joinmonth,
+			String joincalendar, String jointime, String joinmention) {
 		id = joinsh;
 		pwd = joinpassword;
 		name = joinname;
@@ -38,7 +41,7 @@ public class OnlineVO {
 		Month = joinmonth;
 		Calendar = joincalendar;
 		TIME = jointime;
-		
+		MENTION = joinmention;
 
 	}
 //////////////////////////////////////////////////////////////////
@@ -78,22 +81,34 @@ public class OnlineVO {
 	public String getCalendar() {
 		return Calendar;
 	}
+
 	public void setCalendar(String Calendar) {
 		this.Calendar = Calendar;
-	
-	}public String getMonth() {
+
+	}
+
+	public String getMonth() {
 		return Month;
 	}
+
 	public void setMonth(String Month) {
 		this.Month = Month;
-	
-	}public String getTime() {
+
+	}
+
+	public String getTime() {
 		return TIME;
 	}
 
 	public void setTime(String TIME) {
 		this.TIME = TIME;
 	}
+	public String getMention() {
+		return MENTION;
+	}
 
+	public void setMention(String MENTION) {
+		this.MENTION = MENTION;
+	}
 
 }

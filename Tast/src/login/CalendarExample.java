@@ -5,11 +5,16 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 //import login.OnlineDAO;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class CalendarExample {
 	private static JFrame frame;
@@ -131,11 +136,11 @@ public class CalendarExample {
 			datePanel.add(emptyButton);
 		}
 
-
 		// 날짜 버튼으로 날짜 표시
 		int lastDayOfMonth = getLastDayOfMonth(year, month);
 		for (int day = 1; day <= lastDayOfMonth; day++) {
 			JButton button = new JButton(String.valueOf(day));
+			button.setActionCommand(String.format("%d-%d-%d", year, month, day));
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 //               JOptionPane.showMessageDialog(frame, "청구 날짜가 지정되었습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
@@ -144,7 +149,8 @@ public class CalendarExample {
 					String selectedMonth = getMonthName(month); // Get the selected month name
 //					String message = "예약 날짜는 " + selectedMonth + " " + selectedDate + "일로 설정되었습니다.";
 
-					   showTimeSelection(selectedMonth, selectedDate);
+					showTimeSelection(selectedMonth, selectedDate);
+					
 //					OnlineDAO OD = new OnlineDAO();
 //					OD.SelectDateInputDB(selectedMonth, selectedDate, tfid);
 ////					String test = Dao.join2(member);
@@ -159,29 +165,69 @@ public class CalendarExample {
 
 		return panel;
 	}
-	 public static void showTimeSelection(String selectedMonth, String selectedDate) {
-	        Object[] options = { "10AM", "1PM", "3PM", "5PM", "7PM" };
-	        int choice = JOptionPane.showOptionDialog(frame, "예약 시간을 선택해주세요.", "시간 선택", JOptionPane.DEFAULT_OPTION,
-	                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-	        
-	        if (choice != JOptionPane.CLOSED_OPTION) {
-	            String selectedTime = (String) options[choice];
-	            String message = "예약 날짜는 " + selectedMonth + " " + selectedDate + "일 " + selectedTime + "로 설정되었습니다.";
-	            
-	      
-	            
-//	            2.시간선택까지 완료하면 "좋아하는 컬러 or 추구하는 디자인이 있다면 기재해주세요" 라는 입력창 만들기.
-//	            @@@입력하면 디비에 연동시켜 저장시키기 @@@
 
+	public static void showTimeSelection(String selectedMonth, String selectedDate) {
+		Object[] options = { "10AM", "1PM", "3PM", "5PM", "7PM" };
+		int choice = JOptionPane.showOptionDialog(frame, "예약 시간을 선택해주세요.", "시간 선택", JOptionPane.DEFAULT_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
+		if (choice != JOptionPane.CLOSED_OPTION) {
+			String selectedTime = (String) options[choice];
+			String message = "예약 날짜는 " + selectedMonth + " " + selectedDate + "일 " + selectedTime + "로 설정되었습니다.";
 
-				OnlineDAO OD = new OnlineDAO();
-				OD.SelectDateInputDB(selectedMonth, selectedDate, tfid, selectedTime);
+			JFrame answer = new JFrame();
+			answer.setLocation(1200, 500);
+			answer.setSize(300, 180);
+			answer.setTitle("기재란");
+			answer.setLayout(null);
+			answer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+			JLabel answer1 = new JLabel("★추구하는디자인 또는 컬러를 기재해주세요★");
+			answer1.setSize(280, 20);
+			answer1.setLocation(5, 15);
+			answer1.setHorizontalAlignment(JLabel.CENTER);
 
-	            JOptionPane.showMessageDialog(frame, message, "예약 날짜 및 시간 지정", JOptionPane.INFORMATION_MESSAGE);
-	        }
-	    }
+			answer.add(answer1);
+
+			JTextField answer2 = new JTextField(20);
+			answer2.setSize(270, 50);
+			answer2.setLocation(8, 55);
+
+			answer.add(answer2);
+
+			String enteredText = answer2.getText().trim(); // 입력된 텍스트를 가져옵니다
+
+			JButton but1 = new JButton("확인");
+			but1.setSize(270, 30);
+			but1.setLocation(8, 110);
+
+			answer.add(but1);
+
+//	    		String ANSWER = (String) options[choice];
+			answer.setVisible(true);
+
+			but1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String msg = "";
+					msg = "저장되었습니다.";
+
+					String enteredText = answer2.getText().trim(); // 입력된 텍스트를 가져옵니다
+//	    			
+//	    				String inputText = answer2.getText();
+//	    				JOptionPane.showMessageDialog(null, msg);
+					OnlineDAO OD = new OnlineDAO();
+					OD.SelectDateInputDB(selectedMonth, selectedDate, tfid, selectedTime, enteredText);
+					JOptionPane.showMessageDialog(null, msg);
+				}
+			});
+
+//				OnlineDAO OD = new OnlineDAO();
+//				OD.SelectDateInputDB(selectedMonth, selectedDate, tfid, selectedTime,ANSWER);
+
+			JOptionPane.showMessageDialog(frame, message, "예약 날짜 및 시간 지정", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
 
 	// 요일을 계산하는 메서드
 	public static int getDayOfWeek(int year, int month, int day) {
