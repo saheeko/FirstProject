@@ -77,37 +77,32 @@ public class Login extends JFrame {
 		bott.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				OnlineDAO nail = new OnlineDAO();
-				OnlineVO nail2 = new OnlineVO();
+				OnlineDAO nail9 = new OnlineDAO();
+				OnlineVO nail8 = new OnlineVO();
 				String msg = "";
-//				JTextField shph4 = new JTextField(10);
-//				shph4.setSize(340, 30);
-//				shph4.setLocation(25, 90);
-//
-//				jf2.add(shph4);
-				
-				nail2 = nail. findidd(nail2);
-//				OnlineVO findMember = nail.findpass(nail2);
 
-//				nail2.setPwd(shph4.getText());
-//				nail2.setId(nail2.getId());
-//				nail2.setPhone(nail2.getPhone());
+				nail8.setName(shid1.getText());
+				nail8.setPhone(shph1.getText());
+				nail8 = nail9.findidd(nail8);
 
-				if (nail2.getName().equals("") || nail2.getPhone().equals("")) {
-					msg = "입력되지 않은 사항이 있습니다.";
-				} else if (!nail2.getId().equals(shid1.getText())) {
-					msg = "입력된 아이디가 틀렸습니다. ";
-				} else if (!nail2.getPhone().equals(shph1.getText())) {
+				if (nail8.getName() == null || nail8.getPhone() == null) {
+					msg = "입력 되지 않은 사항이 있습니다.";
+				} else if (!nail8.getName().equals(shid1.getText())) {
+					msg = "입력된 이름이 틀렸습니다. ";
+				} else if (!nail8.getPhone().equals(shph1.getText())) {
 					msg = "입력된 핸드폰번호가 틀렸습니다.";
 				} else {
-					msg = "귀하의 비밀번호는 " + nail2. getId() + " 입니다.";
+					msg = "귀하의 아이디는 " + " '" + nail8.getId() + " '" + " 입니다.";
 				}
 				JOptionPane.showMessageDialog(null, msg);
 			}
 		});
 
 	}
-	
+
+//	OnlineVO findMember = nail.findpass(nail2);
+
+//	nail2.setPwd(shph4.getText());
 
 	// 아이디찾기 -휴대폰 인증창
 	public void findphone() {
@@ -333,201 +328,29 @@ public class Login extends JFrame {
 //				shph4.setLocation(25, 90);
 //
 //				jf2.add(shph4);
-				
+
 				nail2.setId(shid4.getText());
 				nail2.setPhone(shph4.getText());
 				nail2 = nail.findpass(nail2);
-	
+
 //				OnlineVO findMember = nail.findpass(nail2);
 
 //				nail2.setPwd(shph4.getText());
-		
 
-				if (nail2.getId().equals("") || nail2.getPhone().equals("")) {
+				if (nail2.getId() == null || nail2.getPhone() == null) {
 					msg = "입력되지 않은 사항이 있습니다.";
 				} else if (!nail2.getId().equals(shid4.getText())) {
 					msg = "입력된 아이디가 틀렸습니다. ";
 				} else if (!nail2.getPhone().equals(shph4.getText())) {
 					msg = "입력된 핸드폰번호가 틀렸습니다.";
 				} else {
-					msg = "귀하의 비밀번호는 " + nail2.getPwd() + " 입니다.";
+					msg = "귀하의 비밀번호는 " + "' " + nail2.getPwd() + "' " + " 입니다.";
 				}
 				JOptionPane.showMessageDialog(null, msg);
 			}
 		});
 
 	}
-
-	// 비밀번호찾기 -휴대폰 인증창
-//	public void findphone1() {
-//		JFrame jf5 = new JFrame();
-//		jf5.setLocation(600, 300);
-//		jf5.setSize(380, 270);
-//		jf5.setTitle("휴대폰인증");
-//		jf5.setLayout(null);
-//		jf5.setVisible(true);
-//
-//		JLabel sk3 = new JLabel("SK");
-//		sk3.setSize(70, 30);
-//		sk3.setLocation(85, 15);
-//		sk3.setFont(new Font("고딕", Font.BOLD, 15));
-//
-//		jf5.add(sk3);
-//
-//		JCheckBox sk2 = new JCheckBox();
-//		sk2.setSize(20, 20);
-//		sk2.setLocation(55, 20);
-//		jf5.add(sk2);
-//
-//		JLabel LG2 = new JLabel("LG");
-//		LG2.setSize(70, 30);
-//		LG2.setLocation(145, 15);
-//		LG2.setFont(new Font("고딕", Font.BOLD, 15));
-//
-//		jf5.add(LG2);
-//
-//		JCheckBox LG3 = new JCheckBox();
-//		LG3.setSize(20, 20);
-//		LG3.setLocation(115, 20);
-//		jf5.add(LG3);
-//
-//		JLabel KT3 = new JLabel("KT");
-//		KT3.setSize(70, 30);
-//		KT3.setLocation(205, 15);
-//		KT3.setFont(new Font("고딕", Font.BOLD, 15));
-//
-//		jf5.add(KT3);
-//
-//		JCheckBox KT4 = new JCheckBox();
-//		KT4.setSize(20, 20);
-//		KT4.setLocation(175, 20);
-//		jf5.add(KT4);
-//
-//		JLabel R2 = new JLabel("알뜰폰");
-//		R2.setSize(70, 30);
-//		R2.setLocation(265, 15);
-//		R2.setFont(new Font("고딕", Font.BOLD, 15));
-//
-//		jf5.add(R2);
-//
-//		JCheckBox R3 = new JCheckBox();
-//		R3.setSize(20, 20);
-//		R3.setLocation(235, 20);
-//		jf5.add(R3);
-//
-//		JRadioButton rd5 = new JRadioButton("전체동의");
-//		rd5.setSize(150, 30);
-//		rd5.setLocation(30, 80);
-//		rd5.setFont(new Font("고딕", Font.BOLD, 15));
-//
-//		JRadioButton rd6 = new JRadioButton("개인정보이용동의");
-//		rd6.setSize(150, 30);
-//		rd6.setLocation(30, 110);
-//
-//		JRadioButton rd7 = new JRadioButton("고유식별정보처리동의");
-//		rd7.setSize(150, 30);
-//		rd7.setLocation(180, 110);
-//
-//		JRadioButton rd8 = new JRadioButton("서비스이용약관동의");
-//		rd8.setSize(150, 30);
-//		rd8.setLocation(30, 140);
-//
-//		JRadioButton rd9 = new JRadioButton("통신사이용약관동의");
-//		rd9.setSize(150, 30);
-//		rd9.setLocation(180, 140);
-//
-//		JButton SNSCK1 = new JButton("문자(SNS)로 인증");
-//		SNSCK1.setSize(340, 30);
-//		SNSCK1.setLocation(13, 190);
-//		SNSCK1.setHorizontalAlignment(JLabel.CENTER);
-//
-//		jf5.add(SNSCK1);
-//
-//		SNSCK1.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//
-//				findsns1();
-//			}
-//		});
-
-//        // 1번 라디오 버튼 눌러져있도록
-//        rd1.setSelected(true);
-
-	// 라디오 버튼을 그룹화 하기위한 객체 생성
-//		ButtonGroup groupRd = new ButtonGroup();
-//
-//		// 그룹에 라디오 버튼 포함시킨다.
-//		groupRd.add(rd5);
-//		groupRd.add(rd6);
-//		groupRd.add(rd7);
-//		groupRd.add(rd8);
-//		groupRd.add(rd9);
-//
-//		jf5.add(SNSCK1);
-//		jf5.add(rd5);
-//		jf5.add(rd6);
-//		jf5.add(rd7);
-//		jf5.add(rd8);
-//		jf5.add(rd9);
-//
-//		// 윈도우 창 크기 설정(가로, 세로)
-////        setSize(500, 500);
-//
-//	}
-
-	// sns 인증창(비민번호
-//	public void findsns1() {
-//		JFrame jf7 = new JFrame();
-//		jf7.setLocation(600, 250);
-//		jf7.setSize(410, 300);
-//		jf7.setTitle("SNS 인증");
-//		jf7.setLayout(null);
-////		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//		JLabel SNS99 = new JLabel("SNS로 인증번호 전송하였습니다. ");
-//		SNS99.setSize(300, 50);
-//		SNS99.setLocation(45, 5);
-//		SNS99.setHorizontalAlignment(JLabel.CENTER);
-//		SNS99.setFont(new Font("고딕", Font.BOLD, 18));
-//
-//		jf7.add(SNS99);
-//
-//		JLabel SNSNUM2 = new JLabel("인증번호");
-//		SNSNUM2.setSize(70, 30);
-//		SNSNUM2.setLocation(35, 60);
-//		SNSNUM2.setHorizontalAlignment(JLabel.CENTER);
-//
-//		jf7.add(SNSNUM2);
-//
-//		JTextField SNSNUM22 = new JTextField(10);
-//		SNSNUM22.setSize(300, 30);
-//		SNSNUM22.setLocation(40, 90);
-//
-//		jf7.add(SNSNUM22);
-//
-//		JLabel SNSNUM3 = new JLabel("★인증문자가 오지 않으면 수신차단 메시지 또는 스팸함을 확인해 주세요.");
-//		SNSNUM3.setSize(370, 30);
-//		SNSNUM3.setLocation(40, 120);
-//		SNSNUM3.setForeground(Color.red);
-////		SNSNUM2.setHorizontalAlignment(JLabel.CENTER);
-//		SNSNUM3.setFont(new Font("고딕", Font.BOLD, 9));
-//
-//		jf7.add(SNSNUM3);
-//
-//		JButton bott11 = new JButton("재전송");
-//		bott11.setSize(80, 30);
-//		bott11.setLocation(150, 150);
-//
-//		jf7.add(bott11);
-//
-//		JButton bott99 = new JButton("2확인");
-//		bott99.setSize(340, 30);
-//		bott99.setLocation(25, 210);
-//
-//		jf7.add(bott99);
-//
-//		jf7.setVisible(true);
-//	}
 
 //회원가입 창
 	public void findjoin() {
@@ -549,19 +372,6 @@ public class Login extends JFrame {
 		nameValue.setLocation(25, 40);
 
 		jf3.add(nameValue);
-
-//		JLabel ph = new JLabel("주민등록번호");
-//		ph.setSize(100, 30);
-//		ph.setLocation(12, 65);
-//		ph.setHorizontalAlignment(JLabel.CENTER);
-//
-//		jf3.add(ph);
-//
-//		JTextField ph1 = new JTextField(20);
-//		ph1.setSize(340, 30);
-//		ph1.setLocation(25, 90);
-//
-//		jf3.add(ph1);
 
 		JLabel id1 = new JLabel("아이디");
 		id1.setSize(70, 30);
@@ -601,19 +411,6 @@ public class Login extends JFrame {
 		pass3.setLocation(25, 190);
 
 		jf3.add(pass3);
-
-//		JLabel add = new JLabel("주소   ");
-//		add.setSize(70, 30);
-//		add.setLocation(8, 265);
-//		add.setHorizontalAlignment(JLabel.CENTER);
-//
-//		jf3.add(add);
-//
-//		JTextField add1 = new JTextField(10);
-//		add1.setSize(340, 30);
-//		add1.setLocation(25, 290);
-//
-//		jf3.add(add1);
 
 		JLabel phone = new JLabel("휴대번호");
 		phone.setSize(70, 30);
@@ -704,7 +501,6 @@ public class Login extends JFrame {
 		title1.setFont(title1.getFont().deriveFont(50.0f));
 		title1.setForeground(Color.blue);
 		jf.add(title1);
-		
 
 		JLabel sh = new JLabel("ID  ");
 		sh.setSize(80, 30);
@@ -811,89 +607,130 @@ public class Login extends JFrame {
 				System.out.println(id.getText() + " : " + password11.getText());
 
 				String strId = id.getText();
-
+				Dao = new OnlineDAO();
 				ArrayList<OnlineVO> list = Dao.list(strId);
+				OnlineVO OB = new OnlineVO();
 
-				if (list.size() == 1) {
-					OnlineVO data = (OnlineVO) list.get(0);
-					String id = data.getId();
-					String pwd = data.getPwd();
-					String name = data.getName();
-					String phone = data.getPhone();
-//					String name = data.getName();
-					String msg = " ";
-					System.out.println("DB ==> " + id + " : " + pwd);
-
-					if (password11.getText().equals(pwd)) {
-						msg = "로그인이 되었습니다!";
-						JOptionPane.showMessageDialog(null, msg);
-
-						JFrame picture = new JFrame();
-						picture.setLocation(100, 100);
-						picture.setSize(800, 800);
-						picture.setTitle("★★★이달의 추천 디자인★★★");
-						picture.setLayout(null);
-
-						try {
-							picture.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("C:\\NAIL.jpg")))));
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-
-						picture.setVisible(true);
-
-						CalendarExample cd = new CalendarExample();
-
-						cd.createAndShowGUI(data.getId(), data.getPwd(), data.getName(), data.getPhone());
-
-					} else if (!password11.getText().equals(pwd)) {
-						msg = "비밀번호를 다시 입력하세요.";
-						JOptionPane.showMessageDialog(null, msg);
-					}
-				} else if (!(id.getText().equals(id))) {
-					msg = "ID가 틀렸습니다. 다시 입력하세요.";
-					JOptionPane.showMessageDialog(null, msg);
-
-				}
-			}
-		});
-
-		// 뭐가 문제인지 말해줘 ?응아니야 아니야 말해줘
-//		bot4.addActionListener(new ActionListener() {
+//				nail2.setId(shid4.getText());
+//				nail2.setPhone(shph4.getText());
+//				nail2 = nail.findpass(nail2);
 //
-//			public void actionPerformed(ActionEvent e) {
-//				OnlineVO member = new OnlineVO();
-//				member.setId("test");
-//				member.setName("김사희");
-//				member.setPhone("010-0000-0000");
-//				member.setPoint(300);
-//				member.setPwd("password11");
-//				// 여기 담았잖아 아아 접수완료 어케 되는지 돌어가는지
-//				
-//				//그런데 그게아니고 여기다가 선언해야 연동된게입력저장되는거잖아?맞아?
-//				// 꼭여기에 선언하라는 법은 없어 
-//				//그래도 나는지금 으로서는 여기다 선언해야지라고바께 아직 못해서 이렇게
-//				//외울게 우선은?
-//				// 나중에는 인터페이스 배우고 하면 여기저기 왔다리 갔다리 하면서
-//				// 데이터 가공 하면서 여기저기 막 대창 ㄱㄱㄱㄱㄱㄱ갔다 간갔다 할거야
-//				// 지금은 그냥 사람들 하는 루틴대로만 하면 됄거같아
-//				// String driver = "oracle.jdbc.driver.OracleDriver";
-//				
-//				
-//				OnlineDAO onlineDao = new OnlineDAO();
-//				int test = onlineDao.join(member);
-//				System.out.println("test :: " + test);
-//				String msg = "";
+////				OnlineVO findMember = nail.findpass(nail2);
 //
-//				if (test == 1) {
-//					msg = "로그인에 성공하였습니다.";
+////				nail2.setPwd(shph4.getText());
+//
+//				if (nail2.getId()==null || nail2.getPhone()==null) {
+//					msg = "입력되지 않은 사항이 있습니다.";
+//				} else if (!nail2.getId().equals(shid4.getText())) {
+//					msg = "입력된 아이디가 틀렸습니다. ";
+//				} else if (!nail2.getPhone().equals(shph4.getText())) {
+//					msg = "입력된 핸드폰번호가 틀렸습니다.";
 //				} else {
-//					msg = "로그인에 실패하였습니다.";
+//					msg = "귀하의 비밀번호는 " + "' " + nail2.getPwd() + "' " + " 입니다.";
 //				}
 //				JOptionPane.showMessageDialog(null, msg);
 //			}
 //		});
-//      
+//
+//	}
+				if (list.size()==0) {
+					msg = "ID가 틀렸습니다. 다시 입력하세요.";
+					JOptionPane.showMessageDialog(null, msg);
+				
+				}	else if (list.get(0).getPositions().equals("Master")) {
+					System.out.println("마스터 프레임 오픈");
+					Master.master(OB);
+				} else {
+//					new showTimeSelection(String selectedMonth, String selectedDate);
+
+					if (list.size() == 1) {
+						OnlineVO data = (OnlineVO) list.get(0);
+						String id = data.getId();
+						String pwd = data.getPwd();
+						String name = data.getName();
+						String phone = data.getPhone();
+//						String name = data.getName();
+						String msg = " ";
+						System.out.println("DB ==> " + id + " : " + pwd);
+
+						if (password11.getText().equals(pwd)) {
+							msg = "로그인이 되었습니다!";
+							JOptionPane.showMessageDialog(null, msg);
+
+							JFrame picture = new JFrame();
+							picture.setLocation(100, 100);
+							picture.setSize(800, 800);
+							picture.setTitle("★★★이달의 추천 디자인★★★");
+							picture.setLayout(null);
+
+							try {
+								picture.setContentPane(
+										new JLabel(new ImageIcon(ImageIO.read(new File("C:\\NAIL.jpg")))));
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+
+							picture.setVisible(true);
+
+							CalendarExample cd = new CalendarExample();
+
+							cd.createAndShowGUI(data.getId(), data.getPwd(), data.getName(), data.getPhone());
+
+						} else if (!password11.getText().equals(pwd)) {
+							msg = "비밀번호를 다시 입력하세요.";
+							JOptionPane.showMessageDialog(null, msg);
+						}
+//						else if (!(sh.getText().equals(id))) {
+//							msg = "ID가 틀렸습니다. 다시 입력하세요.";
+//							JOptionPane.showMessageDialog(null, msg);
+//						}
+
+					}
+				}
+
+//				if (list.size() == 1) {
+//					OnlineVO data = (OnlineVO) list.get(0);
+//					String id = data.getId();
+//					String pwd = data.getPwd();
+//					String name = data.getName();
+//					String phone = data.getPhone();
+////					String name = data.getName();
+//					String msg = " ";
+//					System.out.println("DB ==> " + id + " : " + pwd);
+//
+//					if (password11.getText().equals(pwd)) {
+//						msg = "로그인이 되었습니다!";
+//						JOptionPane.showMessageDialog(null, msg);
+//
+//						JFrame picture = new JFrame();
+//						picture.setLocation(100, 100);
+//						picture.setSize(800, 800);
+//						picture.setTitle("★★★이달의 추천 디자인★★★");
+//						picture.setLayout(null);
+//
+//						try {
+//							picture.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("C:\\NAIL.jpg")))));
+//						} catch (IOException e1) {
+//							e1.printStackTrace();
+//						}
+//
+//						picture.setVisible(true);
+//
+//						CalendarExample cd = new CalendarExample();
+//
+//						cd.createAndShowGUI(data.getId(), data.getPwd(), data.getName(), data.getPhone());
+//
+//					} else if (!password11.getText().equals(pwd)) {
+//						msg = "비밀번호를 다시 입력하세요.";
+//						JOptionPane.showMessageDialog(null, msg);
+//					}
+//				} else if (!(id.getText().equals(id))) {
+//					msg = "ID가 틀렸습니다. 다시 입력하세요.";
+//					JOptionPane.showMessageDialog(null, msg);
+//
+//				}
+			}
+		});
 
 	}
 

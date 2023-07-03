@@ -30,6 +30,11 @@ public class OnlineDAO {
 			String query = "SELECT * FROM MEMBER";
 			if (id != null) {
 				query += " where id=TRIM('" + id + "')";
+				if(id.equals("all")) {
+					query = "SELECT *\r\n"
+							+ "FROM MEMBER\r\n"
+							+ "WHERE positions='USER'";
+				}
 			}
 			System.out.println("SQL : " + query);
 			pstmt = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -45,13 +50,20 @@ public class OnlineDAO {
 				System.out.println("0 row selected.....");
 			} else {
 				System.out.println(rs.getRow() + " rows selected.....");
-				rs.previous();
+				rs.beforeFirst();
 
 				while (rs.next()) {
 					String sh = rs.getString("ID");
 					String password11 = rs.getString("PASSWORD");
+					String name = rs.getString("name");
+					String phone = rs.getString("phone");
+					String month = rs.getString("month");
+					String calendar = rs.getString("calendar");
+					String time = rs.getString("time");
+					String mention = rs.getString("mention");
+					String positions = rs.getString("positions");
 
-					OnlineVO data = new OnlineVO(sh, password11);
+					OnlineVO data = new OnlineVO(sh,password11,name,phone,month,calendar,time,mention,positions);
 					list.add(data);
 				}
 //				CalendarExample cd = new CalendarExample();
@@ -68,6 +80,7 @@ public class OnlineDAO {
 		return list;
 
 	}
+	
 
 	public void joinId(OnlineVO member) {
 		try {
@@ -136,8 +149,9 @@ public class OnlineDAO {
 	public void SelectDateInputDB(String month, String date, String id, String time, String mention) {
 		try {
 			connDB();
-			
-			String sql = "UPDATE MEMBER SET MONTH = '"+ month +"', CALENDAR = '" + date + "', TIME = '" + time + "', MENTION = '" + mention + "' WHERE id = '" + id + "'";
+
+			String sql = "UPDATE MEMBER SET MONTH = '" + month + "', CALENDAR = '" + date + "', TIME = '" + time
+					+ "', MENTION = '" + mention + "' WHERE id = '" + id + "'";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -147,7 +161,6 @@ public class OnlineDAO {
 			int r = pstmt.executeUpdate();
 			System.out.println("변경된 row : " + r);
 
-
 			if (r == 4) {
 				System.out.println("날짜 및 시간 선택 완료");
 			}
@@ -155,76 +168,111 @@ public class OnlineDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	    
+
 	public OnlineVO findpass(OnlineVO member) {
 		System.out.println("Method(findpass())");
 		OnlineVO myMember = new OnlineVO();
-		
-	      //System.out.println(member + "asdsadsad");
-	      try {
-	         connDB();
-	         String query ="select * from Member where ID=? and PHONE=?";
 
-	         pstmt = con.prepareStatement(query); //?에 데이터를 넣기위해 그냥쓰는거
+		// System.out.println(member + "asdsadsad");
+		try {
+			connDB();
+			String query = "select * from Member where ID=? or PHONE=?";
 
-         
-	         pstmt.setString(1, member.getId());
-	         pstmt.setString(2, member.getPhone());
+			pstmt = con.prepareStatement(query); // ?에 데이터를 넣기위해 그냥쓰는거
+
+			pstmt.setString(1, member.getId());
+			pstmt.setString(2, member.getPhone());
 //	         pstmt.setString(3, member.getPwd());
 
-	         rs = pstmt.executeQuery(); //쿼리 결과를 rs에 반환시켜줌	         
-	         
-	         while (rs.next()) {
-	            myMember.setId(rs.getString("id"));
-	            myMember.setPhone(rs.getString("phone"));
-	            myMember.setPwd(rs.getString("password"));
-	
-	            System.out.println("myMember.getId() : " + myMember.getId());
-	            System.out.println("myMember.getPhone() : " + myMember.getPhone());
-	            System.out.println("myMember.getPwd() : " + myMember.getPwd());
-	         }
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-	      return myMember; // 반환 Id가 들어있음
+			rs = pstmt.executeQuery(); // 쿼리 결과를 rs에 반환시켜줌
 
-	   }
-	
-	
+			while (rs.next()) {
+				myMember.setId(rs.getString("id"));
+				myMember.setPhone(rs.getString("phone"));
+				myMember.setPwd(rs.getString("password"));
+
+				System.out.println("myMember.getId() : " + myMember.getId());
+				System.out.println("myMember.getPhone() : " + myMember.getPhone());
+				System.out.println("myMember.getPwd() : " + myMember.getPwd());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return myMember; // 반환 Id가 들어있음
+
+	}
+
 	public OnlineVO findidd(OnlineVO member) {
 		System.out.println("Method(findpass())");
 		OnlineVO myMember1 = new OnlineVO();
-		
-	      //System.out.println(member + "asdsadsad");
-	      try {
-	         connDB();
-	         String query ="select * from Member where NAME =? and PHONE=?";
 
-	         pstmt = con.prepareStatement(query); //?에 데이터를 넣기위해 그냥쓰는거
+		// System.out.println(member + "asdsadsad");
+		try {
+			connDB();
+			String query = "select * from Member where NAME =? or PHONE=?";
 
-         
-	         pstmt.setString(1, member.getName());
-	         pstmt.setString(2, member.getPhone());
+			pstmt = con.prepareStatement(query); // ?에 데이터를 넣기위해 그냥쓰는거
+
+			pstmt.setString(1, member.getName());
+			pstmt.setString(2, member.getPhone());
 //	         pstmt.setString(3, member.getPwd());
 
-	         rs = pstmt.executeQuery(); //쿼리 결과를 rs에 반환시켜줌	         
-	         
-	         while (rs.next()) {
-	            myMember1.setId(rs.getString("name"));
-	            myMember1.setPhone(rs.getString("phone"));
-	            myMember1.setPwd(rs.getString("password"));
-	
-	            System.out.println("myMember.getName() : " + myMember1.getName());
-	            System.out.println("myMember.getPhone() : " + myMember1.getPhone());
-	            System.out.println("myMember.getPwd() : " + myMember1.getPwd());
-	         }
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	      }
-	      return myMember1; // 반환 Id가 들어있음
+			rs = pstmt.executeQuery(); // 쿼리 결과를 rs에 반환시켜줌
 
-	   }
+			while (rs.next()) {
+				myMember1.setName(rs.getString("name"));
+				myMember1.setPhone(rs.getString("phone"));
+				myMember1.setId(rs.getString("id"));
+
+				System.out.println("myMember.getName() : " + myMember1.getName());
+				System.out.println("myMember.getPhone() : " + myMember1.getPhone());
+				System.out.println("myMember.getid() : " + myMember1.getId());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return myMember1; // 반환 Id가 들어있음
+
+	}
+
+	public ArrayList<OnlineVO> Usercheck() {
+		ArrayList<OnlineVO> arrypersonl = new ArrayList<OnlineVO>();
+
+		try {
+			connDB();
+			String query = "SELECT *\r\n"
+					+ "FROM MEMBER\r\n"
+					+ "WHERE positions='USER'";
+			PreparedStatement pstmt = con.prepareStatement(query);
+
+//	         stmt1.setString(1, "Y");
+//	         
+//	         rs = stmt1.executeQuery();
+			pstmt.setString(1, "Y");
+
+			rs = pstmt.executeQuery();
+
+			System.out.println("레코드 값의 갯수 : " + rs.getRow());
+
+			while (rs.next()) {
+				OnlineVO data = new OnlineVO();
+
+				data.setName(rs.getString("name"));
+				data.setPhone(rs.getString("phone"));
+				data.setMonth(rs.getString("month"));
+				data.setTime(rs.getString("time"));
+				data.setMention(rs.getString("mention"));
+
+				arrypersonl.add(data);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return arrypersonl;
+
+	}
 /////////////////////////////////////
 
 	/////////////////////////

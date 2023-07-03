@@ -10,6 +10,9 @@ public class OnlineVO {
 	private String Month;
 	private String TIME;
 	private String MENTION;
+	private String Positions;
+
+
 
 	public OnlineVO() {
 
@@ -33,7 +36,7 @@ public class OnlineVO {
 //
 //	}
 	public OnlineVO(String joinsh, String joinpassword, String joinname, String joinphone, String joinmonth,
-			String joincalendar, String jointime, String joinmention) {
+			String joincalendar, String jointime, String joinmention, String joinpositions) {
 		id = joinsh;
 		pwd = joinpassword;
 		name = joinname;
@@ -42,6 +45,7 @@ public class OnlineVO {
 		Calendar = joincalendar;
 		TIME = jointime;
 		MENTION = joinmention;
+		Positions = joinpositions;
 
 	}
 //////////////////////////////////////////////////////////////////
@@ -109,6 +113,13 @@ public class OnlineVO {
 
 	public void setMention(String MENTION) {
 		this.MENTION = MENTION;
+	}
+	public String getPositions() {
+		return Positions;
+	}
+
+	public void setPositions(String positions) {
+		Positions = positions;
 	}
 
 }
