@@ -177,7 +177,7 @@ public class CalendarExample {
 
 			JFrame answer = new JFrame();
 			answer.setLocation(1200, 500);
-			answer.setSize(300, 180);
+			answer.setSize(300, 190);
 			answer.setTitle("±‚¿Á∂ı");
 			answer.setLayout(null);
 			answer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

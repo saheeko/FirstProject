@@ -676,7 +676,8 @@ public class Login extends JFrame {
 
 							cd.createAndShowGUI(data.getId(), data.getPwd(), data.getName(), data.getPhone());
 
-						} else if (!password11.getText().equals(pwd)) {
+						} 
+						else if (!password11.getText().equals(pwd)) {
 							msg = "비밀번호를 다시 입력하세요.";
 							JOptionPane.showMessageDialog(null, msg);
 						}
